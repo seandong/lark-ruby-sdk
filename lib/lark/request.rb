@@ -42,9 +42,15 @@ module Lark
 
     private
 
+    def info(message)
+      msg = "[LARK API] #{message}"
+      puts msg
+      Rails.logger.info(msg) if defined?(Rails.logger) && Rails.logger
+    end
+
     def request(path, header={}, &_block)
       url = URI::join(API_BASE_URL, path)
-      Rails.logger.debug "[LARK API] request url(#{url}) with parameters: #{header}" if defined?(Rails.logger) && Rails.logger
+      info "request url(#{url}) with parameters: #{header}"
       as = header.delete(:as)
       header['Accept'] = 'application/json'
       response = yield(url, header)
@@ -71,6 +77,7 @@ module Lark
     end
 
     def parse_as_json(body)
+      info "response body: #{body}"
       data = JSON.parse body.to_s
       result = Result.new(data)
       result.verify_token!
@@ -91,7 +98,7 @@ module Lark
     attr_reader :code, :data
 
     def initialize(data)
-      @code = data.delete('code').to_i
+      @code = data['code'].to_i
       @data = data
     end
 
