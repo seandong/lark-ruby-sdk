@@ -1,14 +1,19 @@
 require "lark/version"
 require 'redis'
 require 'active_support/all'
+require 'lark/config'
+
+LIB_PATH = "#{File.dirname(__FILE__)}/lark"
+Dir["#{LIB_PATH}/apis/*.rb",  "#{LIB_PATH}/token_store/*.rb"].each { |path| require path }
+
+require 'lark/api'
 
 module Lark
   API_BASE_URL = 'https://open.feishu.cn/open-apis/'.freeze
 
   # Exceptions
   class RedisNotConfigException < RuntimeError; end
-  class TenantAccessTokenExpiredError < RuntimeError; end
-  class AppAccessTokenExpiredError < RuntimeError; end
+  class AccessTokenExpiredError < RuntimeError; end
   class ResultErrorException < RuntimeError; end
   class ResponseError < StandardError
     attr_reader :error_code

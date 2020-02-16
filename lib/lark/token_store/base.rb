@@ -13,13 +13,17 @@ module Lark
         redis.hget(redis_key, token_key)
       end
 
+      def valid?
+        token.present?
+      end
+
       def update_token
-        result = refresh_token
-        value = result.send(token_key)
+        data = fetch_token.data
+        value = data[token_key]
         if value.nil?
-          puts "#{self.class.name} refresh token error: #{result.inspect}"
+          Lark.logger.error "#{self.class.name} fetch token error: #{data.inspect}"
         else
-          expires_at = Time.now.to_i + result.expires_in.to_i - 120
+          expires_at = Time.now.to_i + data['expire'].to_i - 120
           redis.hmset(
             redis_key,
             token_key, value,
@@ -33,11 +37,7 @@ module Lark
 
       private
 
-      def redis
-        Lark.redis
-      end
-
-      def redis_key
+      def fetch_token
         raise NotImplementedError
       end
 
@@ -45,8 +45,12 @@ module Lark
         raise NotImplementedError
       end
 
-      def refresh_token
-        raise NotImplementedError
+      def redis
+        Lark.redis
+      end
+
+      def redis_key
+        @redis_key ||= Digest::MD5.hexdigest "#{self.class.name}_#{client.app_id}_#{client.app_secret}"
       end
 
       def expired?

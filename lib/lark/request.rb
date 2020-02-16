@@ -20,6 +20,7 @@ module Lark
 
     def post(path, post_body, post_header={})
       request(path, post_header) do |url, header|
+        Lark.logger.info "payload: #{post_body}"
         params = header.delete(:params)
         http.headers(header).post(url, params: params, json: post_body, ssl_context: ssl_context)
       end
@@ -42,15 +43,9 @@ module Lark
 
     private
 
-    def info(message)
-      msg = "[LARK API] #{message}"
-      puts msg
-      Rails.logger.info(msg) if defined?(Rails.logger) && Rails.logger
-    end
-
     def request(path, header={}, &_block)
       url = URI::join(API_BASE_URL, path)
-      info "request url(#{url}) with parameters: #{header}"
+      Lark.logger.info "request url(#{url}) with headers: #{header}"
       as = header.delete(:as)
       header['Accept'] = 'application/json'
       response = yield(url, header)
@@ -77,10 +72,10 @@ module Lark
     end
 
     def parse_as_json(body)
-      info "response body: #{body}"
+      Lark.logger.info "response body: #{body}"
       data = JSON.parse body.to_s
       result = Result.new(data)
-      result.verify_token!
+      raise ::Lark::AccessTokenExpiredError if [99991663, 99991664].include?(result.code)
       result
     end
 
@@ -100,14 +95,6 @@ module Lark
     def initialize(data)
       @code = data['code'].to_i
       @data = data
-    end
-
-    def verify_token!
-      if code == 99991663
-        raise ::Lark::TenantAccessTokenExpiredError
-      elsif code == 99991664
-        raise ::Lark::AppAccessTokenExpiredError
-      end
     end
 
     def success?
