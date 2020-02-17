@@ -1,8 +1,6 @@
 # Lark
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/lark`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Unofficial ruby SDKS for lark [飞书](https://www.feishu.cn/)
 
 ## Installation
 
@@ -14,15 +12,96 @@ gem 'lark'
 
 And then execute:
 
-    $ bundle install
+	$ bundle install
 
 Or install it yourself as:
 
-    $ gem install lark
+	$ gem install lark
+
 
 ## Usage
 
-TODO: Write usage instructions here
+Add configure to your project
+
+```ruby
+# config/initializers/lark.rb
+
+Lark.configure do |config|
+  config.redis = Redis.new(url: 'redis://127.0.0.1:6379/1')
+  # ...
+end
+```
+
+Build lark API
+
+```ruby
+api = Lark::Api.new(
+	app_id: 'xxx',
+	app_secret: 'xxx',
+	tenant_key: 'xxx',
+	isv: false/true, # Internal app: false, ISV app: true
+)
+```
+
+For example, Invoke lark api:
+
+```ruby
+# Get chat list
+api.contact.list
+```
+
+Decrypt message
+
+```ruby
+Lark::Cipher.new(encrypt_key).decrypt(message)
+
+# eg:
+# encrypt = "P37w+VZImNgPEO1RBhJ6RtKl7n6zymIbEG1pReEzghk="
+# Lark::Cipher.new('test key').decrypt encrypt
+# => 'hello world'
+```
+
+## Api List
+
+### 授权 (auth)
+
+获取 app_access_token
+
+	api.app_access_token
+
+获取 tenant_access_token
+
+	api.tenant_access_token
+
+重新推送 app_ticket
+
+	api.auth.app_ticket_resend
+
+更新 app_ticket
+
+	api.app_ticket = xxxx
+
+### 身份验证 (authen)
+
+请求身份验证
+
+	api.authen.index(redirect_uri, state)
+
+获取登录用户身份
+
+	api.authen.access_token(code)
+
+刷新 access_token
+
+	api.authen.refresh_access_token(refresh_token)
+
+获取用户信息
+
+	api.user_info(user_access_token)
+
+
+...
+
 
 ## Development
 
