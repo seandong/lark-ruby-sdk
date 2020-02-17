@@ -21,7 +21,7 @@ Or install it yourself as:
 
 ## Usage
 
-Add configure to your initialize file:
+Add initialize configure to your project:
 
 ```ruby
 # config/initializers/lark.rb
@@ -32,7 +32,7 @@ Lark.configure do |config|
 end
 ```
 
-Build lark API
+Create lark API
 
 ```ruby
 api = Lark::Api.new(
@@ -43,7 +43,7 @@ api = Lark::Api.new(
 )
 ```
 
-For example, Invoke lark api:
+Invoke lark api, For example:
 
 ```ruby
 # Get chat list
