@@ -3,6 +3,7 @@ require 'redis'
 require 'active_support/all'
 require 'lark/config'
 require 'lark/cipher'
+require 'lark/route'
 
 LIB_PATH = "#{File.dirname(__FILE__)}/lark"
 Dir["#{LIB_PATH}/apis/*.rb",  "#{LIB_PATH}/token_store/*.rb"].each { |path| require path }

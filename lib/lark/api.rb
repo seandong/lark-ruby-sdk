@@ -2,8 +2,15 @@ require 'lark/request'
 
 module Lark
   class Api
+    include Route
     include Apis::Message
     include Apis::Chat
+
+    mount :auth
+    mount :authen
+    mount :contact
+    mount :chat
+    mount :message
 
     attr_reader :app_id, :app_secret, :tenant_key, :isv, :options
 
