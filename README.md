@@ -21,7 +21,7 @@ Or install it yourself as:
 
 ## Usage
 
-Add configure to your project
+Add configure to your initialize file:
 
 ```ruby
 # config/initializers/lark.rb
