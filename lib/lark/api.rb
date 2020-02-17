@@ -4,7 +4,6 @@ module Lark
   class Api
     include Apis::Message
     include Apis::Chat
-    include Cipher
 
     attr_reader :app_id, :app_secret, :tenant_key, :isv, :options
 
