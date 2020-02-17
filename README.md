@@ -47,7 +47,7 @@ Invoke lark api, For example:
 
 ```ruby
 # Get chat list
-api.contact.list
+api.chat.list
 ```
 
 Decrypt message

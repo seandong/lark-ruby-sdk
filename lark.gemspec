@@ -1,7 +1,7 @@
 require_relative 'lib/lark/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "lark-sdk"
+  spec.name          = "lark"
   spec.version       = Lark::VERSION
   spec.authors       = ["Sean Dong"]
   spec.email         = ["sindon@gmail.com"]
