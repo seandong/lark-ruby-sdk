@@ -7,7 +7,7 @@ Unofficial ruby SDKS for lark [飞书](https://www.feishu.cn/)
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'lark'
+gem 'lark-sdk'
 ```
 
 And then execute:
@@ -16,7 +16,7 @@ And then execute:
 
 Or install it yourself as:
 
-	$ gem install lark
+	$ gem install lark-sdk
 
 
 ## Usage
