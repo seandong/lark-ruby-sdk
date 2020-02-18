@@ -87,7 +87,7 @@ Lark::Cipher.new(encrypt_key).decrypt(message)
 ## Api List
 
 
-**身份验证**
+### 身份验证
 [`lib/lark/apis/authen.rb`](lib/lark/apis/authen.rb)
 
 | 名称 | 接口 |
@@ -98,7 +98,7 @@ Lark::Cipher.new(encrypt_key).decrypt(message)
 | [获取用户信息](https://open.feishu.cn/document/ukTMukTMukTM/uIDO4UjLygDO14iM4gTN) | `api.authen.user_info(user_access_token)` |
 
 
-**通讯录**
+### 通讯录
 [lib/lark/apis/contact.rb](lib/lark/apis/contact.rb)
 
 | 名称 | 接口 |
