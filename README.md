@@ -20,7 +20,7 @@ Or install it yourself as:
 
 	require 'lark/sdk'
 
-## 使用说明
+## 使用
 
 初始化：
 
