@@ -6,8 +6,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Sean Dong"]
   spec.email         = ["sindon@gmail.com"]
 
-  spec.summary       = %q{Lark API SDKs for ruby}
-  spec.description   = %q{Unofficial ruby SDKs for Lark API [飞书](https://open.feishu.cn)}
+  spec.summary       = %q{Lark(飞书) API SDKs for ruby}
+  spec.description   = %q{Lark(飞书) API SDKs for ruby https://open.feishu.cn}
   spec.homepage      = "https://github.com/mycolorway/lark-ruby-sdk"
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")

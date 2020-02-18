@@ -1,6 +1,8 @@
 # Lark
 
-Unofficial ruby SDKs for Lark API [飞书](https://open.feishu.cn/document)
+Ruby SDKs for Lark(飞书) API https://open.feishu.cn/
+
+[![Gem Version](https://badge.fury.io/rb/lark-sdk.svg)](https://badge.fury.io/rb/lark-sdk)
 
 ## 安装
 
