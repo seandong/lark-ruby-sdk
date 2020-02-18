@@ -1,9 +1,9 @@
 module Lark
-  module Route
+  module Helper
     extend ActiveSupport::Concern
 
     module ClassMethods
-      def mount(name)
+      def api_mount(name)
         class_eval <<-CODE, __FILE__, __LINE__ + 1
           def #{name}
             @#{name} ||= Class.new(SimpleDelegator) do

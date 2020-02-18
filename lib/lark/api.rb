@@ -2,15 +2,20 @@ require 'lark/request'
 
 module Lark
   class Api
-    include Route
+    include Helper
     include Apis::Message
     include Apis::Chat
 
-    mount :auth
-    mount :authen
-    mount :contact
-    mount :chat
-    mount :message
+    api_mount :auth
+    api_mount :authen
+    api_mount :contact
+    api_mount :user
+    api_mount :application
+    api_mount :pay
+    api_mount :chat
+    api_mount :bot
+    api_mount :message
+    api_mount :image
 
     attr_reader :app_id, :app_secret, :tenant_key, :isv, :options
 
@@ -79,8 +84,11 @@ module Lark
     end
 
     def with_token(headers, tries=2)
-      via = headers[:via] || 'tenant'
-      token = send("#{via}_access_token")
+      token = headers[:access_token]
+      if token.nil?
+        via = headers[:via] || 'tenant'
+        token = send("#{via}_access_token")
+      end
       yield headers.merge(authorization: "Bearer #{token}")
     rescue AccessTokenExpiredError
       send("#{via}_token_store").fetch_token
