@@ -44,41 +44,24 @@ api = Lark::Api.new(
 )
 ```
 
-`app_access_token`：
-
-```ruby
-api.app_access_token
-```
-
-`tenant_access_token`：
-
-```ruby
-api.tenant_access_token
-```
-
-`app_ticket`：
-
-```ruby
-# 设置 app_ticket
-api.app_ticket = xxx
-
-# 获取 app_ticket
-api.app_ticket
-```
-
-消息解密：
+消息体解密：
 
 ```ruby
 Lark::Cipher.new(encrypt_key).decrypt(message)
-
-# eg:
-# encrypt = "P37w+VZImNgPEO1RBhJ6RtKl7n6zymIbEG1pReEzghk="
-# Lark::Cipher.new('test key').decrypt encrypt
-# => 'hello world'
 ```
 
 ## Api 列表
 
+### 授权
+[`lib/lark/apis/auth.rb`](lib/lark/apis/auth.rb)
+
+| 名称 | 接口 |
+| --- | --- |
+| [获取 app_access_token](https://open.feishu.cn/document/ukTMukTMukTM/uADN14CM0UjLwQTN) | `api.app_access_token` |
+| [获取 tenant_access_token](https://open.feishu.cn/document/ukTMukTMukTM/uEjNz4SM2MjLxYzM) | `api.tenant_access_token` |
+| 更新 app_ticket | `api.app_ticket=` |
+| 获取 app_ticket | `api.app_ticket` |
+| [重新推送 app_ticket](https://open.feishu.cn/document/ukTMukTMukTM/uQjNz4CN2MjL0YzM) | `api.auth.app_ticket_resend` |
 
 ### 身份验证
 [`lib/lark/apis/authen.rb`](lib/lark/apis/authen.rb)
