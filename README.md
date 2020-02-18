@@ -87,7 +87,7 @@ Lark::Cipher.new(encrypt_key).decrypt(message)
 ## Api List
 
 
-### 身份验证 [lib/lark/apis/authen.rb](lib/lark/apis/authen.rb)
+***身份验证*** [lib/lark/apis/authen.rb](lib/lark/apis/authen.rb)
 
 | 名称 | 接口 |
 | --- | --- |
@@ -97,7 +97,7 @@ Lark::Cipher.new(encrypt_key).decrypt(message)
 | [获取用户信息](https://open.feishu.cn/document/ukTMukTMukTM/uIDO4UjLygDO14iM4gTN) | `api.authen.user_info(user_access_token)` |
 
 
-### 通讯录 [lib/lark/apis/contact.rb](lib/lark/apis/contact.rb)
+***通讯录*** [lib/lark/apis/contact.rb](lib/lark/apis/contact.rb)
 
 | 名称 | 接口 |
 | --- | --- |
@@ -125,7 +125,7 @@ Lark::Cipher.new(encrypt_key).decrypt(message)
 | [使用手机号或邮箱获取用户 ID](https://open.feishu.cn/document/ukTMukTMukTM/uUzMyUjL1MjM14SNzITN) | `api.user.batch_get_id` |
 
 
-### 用户群组  [lib/lark/apis/user.rb](lib/lark/apis/user.rb)
+***用户群组*** [lib/lark/apis/user.rb](lib/lark/apis/user.rb)
 
 | 名称 | 接口 |
 | --- | --- |
@@ -134,7 +134,7 @@ Lark::Cipher.new(encrypt_key).decrypt(message)
 | [搜索用户所在的群列表](https://open.feishu.cn/document/ukTMukTMukTM/uUTOyUjL1kjM14SN5ITN) | `api.chat.search` |
 
 
-### 应用管理  [lib/lark/apis/application.rb](lib/lark/apis/application.rb)
+***应用管理*** [lib/lark/apis/application.rb](lib/lark/apis/application.rb)
 
 | 名称 | 接口 |
 | --- | --- |
@@ -145,7 +145,7 @@ Lark::Cipher.new(encrypt_key).decrypt(message)
 | [更新应用可用范围](https://open.feishu.cn/document/ukTMukTMukTM/ucDN3UjL3QzN14yN0cTN) | `api.application.app_update_visibility` |
 
 
-### 应用商店  [lib/lark/apis/pay.rb](lib/lark/apis/pay.rb)
+***应用商店*** [lib/lark/apis/pay.rb](lib/lark/apis/pay.rb)
 
 | 名称 | 接口 |
 | --- | --- |
@@ -154,7 +154,7 @@ Lark::Cipher.new(encrypt_key).decrypt(message)
 | [查询订单详情](https://open.feishu.cn/document/ukTMukTMukTM/uITNwUjLyUDM14iM1ATN) | `api.pay.order_get` |
 
 
-### 机器人 → 群信息和群管理  [lib/lark/apis/chat.rb](lib/lark/apis/chat.rb)
+***机器人 → 群信息和群管理*** [lib/lark/apis/chat.rb](lib/lark/apis/chat.rb)
 
 | 名称 | 接口 |
 | --- | --- |
@@ -167,7 +167,7 @@ Lark::Cipher.new(encrypt_key).decrypt(message)
 | [解散群](https://open.feishu.cn/document/ukTMukTMukTM/uUDN5QjL1QTO04SN0kDN) | `api.chat.disband` |
 
 
-### 机器人信息和管理  [lib/lark/apis/bot.rb](lib/lark/apis/bot.rb)
+***机器人信息和管理*** [lib/lark/apis/bot.rb](lib/lark/apis/bot.rb)
 
 | 名称 | 接口 |
 | --- | --- |
@@ -176,7 +176,7 @@ Lark::Cipher.new(encrypt_key).decrypt(message)
 | [将机器人移出群](https://open.feishu.cn/document/ukTMukTMukTM/ucDO04yN4QjL3gDN) | `api.bot.remove` |
 
 
-### 消息  [lib/lark/apis/message.rb](lib/lark/apis/message.rb)
+***消息*** [`lib/lark/apis/message.rb`](lib/lark/apis/message.rb)
 
 | 名称 | 接口 |
 | --- | --- |
@@ -184,7 +184,7 @@ Lark::Cipher.new(encrypt_key).decrypt(message)
 | [发送消息（文本/图片/富文本/名片/卡片）](https://open.feishu.cn/document/ukTMukTMukTM/uUjNz4SN2MjL1YzM) | `api.message.direct_send` |
 
 
-### 图片  [lib/lark/apis/image.rb](lib/lark/apis/image.rb)
+***图片*** [lib/lark/apis/image.rb](lib/lark/apis/image.rb)
 
 | 名称 | 接口 |
 | --- | --- |
