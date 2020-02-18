@@ -2,6 +2,8 @@ module Lark
   module Helper
     extend ActiveSupport::Concern
 
+    def
+
     module ClassMethods
       def api_mount(name)
         class_eval <<-CODE, __FILE__, __LINE__ + 1

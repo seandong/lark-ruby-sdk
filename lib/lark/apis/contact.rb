@@ -39,7 +39,7 @@ module Lark
       end
 
       def department_batch_get(department_ids=[])
-        get 'contact/v1/department/detail/batch_get', params: {department_id: department_id}
+        get 'contact/v1/department/detail/batch_get', params: {department_id: department_ids}
       end
 
       def department_user_list(department_id:, offset:, page_size:, fetch_child: false)
