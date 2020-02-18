@@ -1,6 +1,6 @@
 # Lark
 
-Unofficial ruby SDKS for lark [飞书](https://www.feishu.cn/)
+Unofficial ruby SDKs for Lark API [飞书](https://open.feishu.cn/document)
 
 ## 安装
 
