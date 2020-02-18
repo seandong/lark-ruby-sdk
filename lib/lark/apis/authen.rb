@@ -25,7 +25,7 @@ module Lark
       end
 
       def user_info(user_access_token)
-        request.get('authen/v1/user_info', {access_token: user_access_token}
+        request.get 'authen/v1/user_info', {access_token: user_access_token}
       end
     end
   end

@@ -7,7 +7,8 @@ module Lark
           params: {
             page_size: page_size,
             page_token: page_token
-          }.compact
+          }
+        }.compact
       end
 
       def search(user_access_token:, query:, page_size: nil, page_token: nil)
