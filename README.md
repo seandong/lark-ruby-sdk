@@ -24,7 +24,7 @@ Or install it yourself as:
 
 ## 使用说明
 
-初始化配置：
+初始化：
 
 ```ruby
 # config/initializers/lark.rb
@@ -35,7 +35,7 @@ Lark.configure do |config|
 end
 ```
 
-新建 Lark API 接口实例：
+实例化 API：
 
 ```ruby
 api = Lark::Api.new(
