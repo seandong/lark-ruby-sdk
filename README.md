@@ -40,14 +40,21 @@ api = Lark::Api.new(
 	app_id: 'xxx',
 	app_secret: 'xxx',
 	tenant_key: 'xxx',
-	isv: false/true, # Internal app: false, ISV app: true
+	isv: false/true, # 自建应用: false, 应用商店应用: true
 )
 ```
 
-消息体解密：
+加/解密：
 
 ```ruby
-Lark::Cipher.new(encrypt_key).decrypt(message)
+
+cipher = Lark::Cipher.new(encrypt_key)
+
+# 解密
+cipher.decrypt(message)
+
+# 加密
+cipher.encrypt(message)
 ```
 
 ## Api 列表
