@@ -33,7 +33,7 @@ Lark.configure do |config|
 end
 ```
 
-Create lark API
+新建 Lark API 接口实例
 
 ```ruby
 api = Lark::Api.new(
@@ -44,19 +44,19 @@ api = Lark::Api.new(
 )
 ```
 
-Get `app_access_token`
+获取 `app_access_token`
 
 ```ruby
 api.app_access_token
 ```
 
-Get `tenant_access_token`
+获取 `tenant_access_token`
 
 ```ruby
 api.tenant_access_token
 ```
 
-Get or set `app_ticket`
+设置和获取 `app_ticket`
 
 ```ruby
 # set
@@ -66,14 +66,7 @@ api.app_ticket = xxx
 api.app_ticket
 ```
 
-Invoke lark api, For example:
-
-```ruby
-# Get chat list
-api.chat.list
-```
-
-Decrypt message
+事件消息解密：
 
 ```ruby
 Lark::Cipher.new(encrypt_key).decrypt(message)
@@ -84,7 +77,7 @@ Lark::Cipher.new(encrypt_key).decrypt(message)
 # => 'hello world'
 ```
 
-## Api List
+## Api 列表
 
 
 ### 身份验证
