@@ -2,7 +2,7 @@
 
 Unofficial ruby SDKS for lark [飞书](https://www.feishu.cn/)
 
-## Installation
+## 安装
 
 Add this line to your application's Gemfile:
 
@@ -20,9 +20,9 @@ Or install it yourself as:
 
 	require 'lark/sdk'
 
-## Usage
+## 使用说明
 
-Add initialize configure to your project:
+初始化配置：
 
 ```ruby
 # config/initializers/lark.rb
@@ -33,7 +33,7 @@ Lark.configure do |config|
 end
 ```
 
-新建 Lark API 接口实例
+新建 Lark API 接口实例：
 
 ```ruby
 api = Lark::Api.new(
@@ -44,29 +44,29 @@ api = Lark::Api.new(
 )
 ```
 
-获取 `app_access_token`
+`app_access_token`：
 
 ```ruby
 api.app_access_token
 ```
 
-获取 `tenant_access_token`
+`tenant_access_token`：
 
 ```ruby
 api.tenant_access_token
 ```
 
-设置和获取 `app_ticket`
+`app_ticket`：
 
 ```ruby
-# set
+# 设置 app_ticket
 api.app_ticket = xxx
 
-# get
+# 获取 app_ticket
 api.app_ticket
 ```
 
-事件消息解密：
+消息解密：
 
 ```ruby
 Lark::Cipher.new(encrypt_key).decrypt(message)
