@@ -1,6 +1,4 @@
-# Lark
-
-Ruby SDKs for Lark(飞书) API https://open.feishu.cn/
+> Ruby SDKs for Lark(飞书) API https://open.feishu.cn/
 
 [![Gem Version](https://badge.fury.io/rb/lark-sdk.svg)](https://badge.fury.io/rb/lark-sdk)
 
