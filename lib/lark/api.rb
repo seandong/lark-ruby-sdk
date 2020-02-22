@@ -20,10 +20,10 @@ module Lark
     attr_reader :app_id, :app_secret, :tenant_key, :isv, :options
 
     def initialize options={}
-      @app_id = options.delete(:app_id) || Lark.default_app_id
-      @app_secret = options.delete(:app_secret) || Lark.default_app_secret
+      @app_id = options.delete(:app_id) || Lark.config.default_app_id
+      @app_secret = options.delete(:app_secret) || Lark.config.default_app_secret
       @tenant_key = options.delete(:tenant_key)
-      @isv = options.delete(:isv) || Lark.default_isv
+      @isv = options.delete(:isv) || Lark.config.default_isv
       @options = options
     end
 
