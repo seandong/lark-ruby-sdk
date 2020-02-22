@@ -23,7 +23,7 @@ module Lark
       @app_id = options.delete(:app_id) || Lark.app_id
       @app_secret = options.delete(:app_secret) || Lark.app_secret
       @tenant_key = options.delete(:tenant_key)
-      @isv = options.delete(:isv) || false
+      @isv = options.delete(:isv) || Lark.isv
       @options = options
     end
 

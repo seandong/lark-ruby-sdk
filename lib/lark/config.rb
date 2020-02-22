@@ -28,6 +28,6 @@ module Lark
   end
 
   class Config
-    attr_accessor :app_id, :app_secret, :redis, :http_timeout_options, :logger
+    attr_accessor :app_id, :app_secret, :isv, :redis, :http_timeout_options, :logger
   end
 end
