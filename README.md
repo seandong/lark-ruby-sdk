@@ -40,9 +40,9 @@ end
 
 ```ruby
 api = Lark::Api.new(
-	app_id: 'xxx',        # default value with Lark.config.default_app_id
-	app_secret: 'xxx',    # default value with Lark.config.default_app_secret
-	isv: false/true,      # default value with Lark.config.default_app_secret
+	app_id: 'xxx',        # default: Lark.config.default_app_id
+	app_secret: 'xxx',    # default: Lark.config.default_app_secret
+	isv: false/true,      # default: Lark.config.default_app_secret
 	tenant_key: 'xxx'     # required while internal app
 )
 ```
