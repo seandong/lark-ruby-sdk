@@ -29,6 +29,9 @@ Or install it yourself as:
 
 Lark.configure do |config|
   config.redis = Redis.new(url: 'redis://127.0.0.1:6379/1')
+  config.default_app_id = 'xxx'       # 应用 app ID
+  config.default_app_secret = 'xxx'   # 应用 app secret
+  config.default_isv = true           # 自建应用: false, 应用商店应用: true
   # ...
 end
 ```
@@ -37,10 +40,10 @@ end
 
 ```ruby
 api = Lark::Api.new(
-	app_id: 'xxx',
-	app_secret: 'xxx',
-	tenant_key: 'xxx',
-	isv: false/true, # 自建应用: false, 应用商店应用: true
+	app_id: 'xxx',        # default value with Lark.config.default_app_id
+	app_secret: 'xxx',    # default value with Lark.config.default_app_secret
+	isv: false/true,      # default value with Lark.config.default_app_secret
+	tenant_key: 'xxx'     # required while internal app
 )
 ```
 
