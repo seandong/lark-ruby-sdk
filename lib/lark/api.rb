@@ -94,5 +94,15 @@ module Lark
       send("#{via}_token_store").fetch_token
       retry unless (tries -= 1).zero?
     end
+
+    class << self
+      def default
+        @default ||= new(
+          app_id: Lark.config.default_app_id,
+          app_secret: Lark.config.default_app_secret,
+          isv: Lark.config.default_isv
+        )
+      end
+    end
   end
 end
