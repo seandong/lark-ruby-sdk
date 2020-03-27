@@ -17,6 +17,7 @@ module Lark
     api_mount :message
     api_mount :image
     api_mount :mina
+    api_mount :notify
 
     attr_reader :app_id, :app_secret, :tenant_key, :isv, :options
 
