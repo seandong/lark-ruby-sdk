@@ -3,8 +3,6 @@ require 'lark/request'
 module Lark
   class Api
     include Helper
-    include Apis::Message
-    include Apis::Chat
 
     api_mount :auth
     api_mount :authen
