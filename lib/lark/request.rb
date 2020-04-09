@@ -17,6 +17,7 @@ module Lark
         http.headers(header).get(url, params: params, ssl_context: ssl_context)
       end
     end
+    alias delete get
 
     def post(path, post_body, post_header={})
       request(path, post_header) do |url, header|

@@ -16,6 +16,9 @@ module Lark
     api_mount :image
     api_mount :mina
     api_mount :notify
+    api_mount :'drive/file'
+    api_mount :'drive/folder'
+    api_mount :'drive/platform'
 
     attr_reader :app_id, :app_secret, :tenant_key, :isv, :options
 
