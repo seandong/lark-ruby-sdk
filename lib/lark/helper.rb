@@ -5,8 +5,8 @@ module Lark
     module ClassMethods
       def api_mount(name)
         class_eval <<-CODE, __FILE__, __LINE__ + 1
-          def #{name.gsub('/', '_')}
-            @#{name.gsub('/', '_')} ||= Class.new(SimpleDelegator) do
+          def #{name.to_s.gsub('/', '_')}
+            @#{name.to_s.gsub('/', '_')} ||= Class.new(SimpleDelegator) do
               include Apis::#{name.to_s.classify}
             end.new(self)
           end
