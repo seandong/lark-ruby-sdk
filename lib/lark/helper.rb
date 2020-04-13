@@ -7,7 +7,7 @@ module Lark
         class_eval <<-CODE, __FILE__, __LINE__ + 1
           def #{name.to_s.gsub('/', '_')}
             @#{name.to_s.gsub('/', '_')} ||= Class.new(SimpleDelegator) do
-              include Apis::#{name.to_s.classify}
+              include ::Lark::Apis::#{name.to_s.classify}
             end.new(self)
           end
         CODE
