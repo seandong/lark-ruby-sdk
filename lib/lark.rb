@@ -6,7 +6,7 @@ require 'lark/cipher'
 require 'lark/helper'
 
 LIB_PATH = "#{File.dirname(__FILE__)}/lark"
-Dir["#{LIB_PATH}/apis/*.rb",  "#{LIB_PATH}/token_store/*.rb"].each { |path| require path }
+Dir["#{LIB_PATH}/apis/**/*.rb",  "#{LIB_PATH}/token_store/*.rb"].each { |path| require path }
 
 require 'lark/api'
 
