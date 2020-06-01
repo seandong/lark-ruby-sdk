@@ -39,7 +39,7 @@ module Lark
       end
 
       def update(payload={})
-        get 'chat/v4/update/', payload
+        post 'chat/v4/update/', payload
       end
 
       def chatter_add(chat_id:, user_ids: nil, open_ids: nil)
