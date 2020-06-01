@@ -16,6 +16,7 @@ module Lark
     api_mount :image
     api_mount :mina
     api_mount :notify
+    api_mount :interactive
     api_mount :'drive/file'
     api_mount :'drive/folder'
     api_mount :'drive/platform'
