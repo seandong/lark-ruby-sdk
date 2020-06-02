@@ -32,7 +32,7 @@ module Lark
     end
 
     def valid?
-      app_token_store.valid? && tenant_token_store.valid?
+      app_id.present? && app_token_store.valid? && tenant_token_store.valid?
     end
 
     def request
@@ -77,6 +77,7 @@ module Lark
 
     def app_token_store
       return @app_token_store if defined?(@app_token_store)
+
       klass = isv ? TokenStore::IsvAppToken : TokenStore::AppToken
       @app_token_store = klass.new(self)
     end
@@ -88,6 +89,8 @@ module Lark
     end
 
     def with_token(headers, tries=2)
+      raise AppNotConfigException if app_id.blank?
+
       token = headers[:access_token]
       if token.nil?
         via = headers[:via] || 'tenant'
