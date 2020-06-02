@@ -26,6 +26,7 @@ module Lark
     def initialize options={}
       @app_id = options.delete(:app_id) || Lark.config.default_app_id
       @app_secret = options.delete(:app_secret) || Lark.config.default_app_secret
+      raise AppNotConfigException if @app_id.nil? || @app_id.empty?
       @tenant_key = options.delete(:tenant_key)
       @isv = options.delete(:isv) || Lark.config.default_isv
       @options = options
@@ -84,13 +85,12 @@ module Lark
 
     def tenant_token_store
       return @tenant_token_store if defined?(@tenant_token_store)
+
       klass = isv ? TokenStore::IsvTenantToken : TokenStore::TenantToken
       @tenant_token_store = klass.new(self)
     end
 
     def with_token(headers, tries=2)
-      raise AppNotConfigException if app_id.blank?
-
       token = headers[:access_token]
       if token.nil?
         via = headers[:via] || 'tenant'
