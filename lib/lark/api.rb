@@ -27,13 +27,14 @@ module Lark
       @app_id = options.delete(:app_id) || Lark.config.default_app_id
       @app_secret = options.delete(:app_secret) || Lark.config.default_app_secret
       raise AppNotConfigException if @app_id.nil? || @app_id.empty?
+
       @tenant_key = options.delete(:tenant_key)
       @isv = options.delete(:isv) || Lark.config.default_isv
       @options = options
     end
 
     def valid?
-      app_id.present? && app_token_store.valid? && tenant_token_store.valid?
+      app_token_store.valid? && tenant_token_store.valid?
     end
 
     def request
