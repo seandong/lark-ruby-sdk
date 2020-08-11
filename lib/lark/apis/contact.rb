@@ -42,19 +42,21 @@ module Lark
         get 'contact/v1/department/detail/batch_get', params: {department_ids: department_ids}
       end
 
-      def department_user_list(department_id:, offset:, page_size:, fetch_child: false)
+      def department_user_list(department_id:, offset: nil, page_token: nil, page_size:, fetch_child: false)
         get 'contact/v1/department/user/list', params: {
           department_id: department_id,
-          offset: offset,
+          offset: offset, # deprecation
+          page_token: page_token,
           page_size: page_size,
           fetch_child: fetch_child
         }.compact
       end
 
-      def department_user_detail_list(department_id:, offset:, page_size:, fetch_child: false)
+      def department_user_detail_list(department_id:, offset: nil, page_token: nil, page_size:, fetch_child: false)
         get 'contact/v1/department/user/detail/list', params: {
           department_id: department_id,
-          offset: offset,
+          offset: offset, # deprecation
+          page_token: page_token,
           page_size: page_size,
           fetch_child: fetch_child
         }.compact
