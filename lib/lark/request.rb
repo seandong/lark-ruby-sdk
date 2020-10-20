@@ -50,7 +50,10 @@ module Lark
       as = header.delete(:as)
       header['Accept'] = 'application/json'
       response = yield(url, header)
-      raise ResponseError.new(response.status) unless response.status.success?
+      unless response.status.success?
+        Lark.logger.info "request happen error(#{url}); response: #{response.body}"
+        raise ResponseError.new(response.status, response.body)
+      end
       handle_response(response, as || :json)
     end
 
