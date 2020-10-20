@@ -1,3 +1,3 @@
 module Lark
-  VERSION = '1.0.16'.freeze
+  VERSION = '1.1.0'.freeze
 end
