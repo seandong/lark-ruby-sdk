@@ -1,6 +1,10 @@
 module Lark
   module Apis
     module Application
+      def app_admin_user_list
+        get '/user/v4/app_admin_user/list'
+      end
+
       def is_user_admin(params={})
         get 'application/v3/is_user_admin', params: params
       end
