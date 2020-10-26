@@ -9,11 +9,11 @@ module Lark
       end
 
       def order_list(params={})
-        get 'pay/v1/order/list', via: 'app', params: params
+        get 'pay/v1/order/list', params: params
       end
 
       def order_get(order_id)
-        get 'pay/v1/order/get', via: 'app', params: {order_id: order_id}
+        get 'pay/v1/order/get', params: {order_id: order_id}
       end
     end
   end
