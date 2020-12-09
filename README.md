@@ -60,7 +60,7 @@ cipher.decrypt(message)
 cipher.encrypt(message)
 ```
 
-[Api 列表](https://github.com/mycolorway/lark-ruby-sdk/wiki/API-List)
+[Api 列表](https://github.com/seandong/lark-ruby-sdk/wiki/apis)
 
 
 ## 贡献
