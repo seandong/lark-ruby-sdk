@@ -8,6 +8,7 @@ module Lark
     api_mount :authen
     api_mount :contact
     api_mount :user
+    api_mount :search
     api_mount :application
     api_mount :pay
     api_mount :chat
@@ -23,7 +24,7 @@ module Lark
 
     attr_reader :app_id, :app_secret, :tenant_key, :isv, :options
 
-    def initialize options={}
+    def initialize(options = {})
       @app_id = options.delete(:app_id) || Lark.config.default_app_id
       @app_secret = options.delete(:app_secret) || Lark.config.default_app_secret
       raise AppNotConfigException if @app_id.nil? || @app_id.empty?
@@ -41,26 +42,26 @@ module Lark
       @request ||= Lark::Request.new(false)
     end
 
-    def get(path, headers={})
-      with_token(headers) do |headers|
-        request.get path, headers
+    def get(path, headers = {})
+      with_token(headers) do |headers_with_token|
+        request.get path, headers_with_token
       end
     end
 
-    def post(path, payload, headers={})
-      with_token(headers) do |headers|
-        request.post path, payload, headers
+    def post(path, payload, headers = {})
+      with_token(headers) do |headers_with_token|
+        request.post path, payload, headers_with_token
       end
     end
 
-    def post_file(path, file, headers={})
-      with_token(headers) do |headers|
-        request.post_file path, file, headers
+    def post_file(path, file, headers = {})
+      with_token(headers) do |headers_with_token|
+        request.post_file path, file, headers_with_token
       end
     end
 
-    def app_ticket= ticket
-      Lark.redis.set "APP_TICKET_#{app_id}", ticket
+    def app_ticket=(new_ticket)
+      Lark.redis.set "APP_TICKET_#{app_id}", new_ticket
     end
 
     def app_ticket
@@ -91,7 +92,7 @@ module Lark
       @tenant_token_store = klass.new(self)
     end
 
-    def with_token(headers, tries=2)
+    def with_token(headers, tries = 2)
       token = headers[:access_token]
       if token.nil?
         via = headers[:via] || 'tenant'
