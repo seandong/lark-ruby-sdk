@@ -23,11 +23,17 @@ module Lark
     end
 
     def http_timeout_options
-      config.http_timeout_options || {write: 2, connect: 5, read: 10}
+      config.http_timeout_options || { write: 2, connect: 5, read: 10 }
+    end
+
+    def api_base_url
+      return @api_base_url if defined?(@api_base_url)
+
+      @api_base_url = config.api_base_url || 'https://open.feishu.cn/open-apis/'.freeze
     end
   end
 
   class Config
-    attr_accessor :default_app_id, :default_app_secret, :default_isv, :redis, :http_timeout_options, :logger
+    attr_accessor :default_app_id, :default_app_secret, :default_isv, :redis, :http_timeout_options, :logger, :api_base_url
   end
 end
