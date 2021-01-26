@@ -11,8 +11,6 @@ Dir["#{lib_path}/apis/**/*.rb",  "#{lib_path}/token_store/*.rb"].each { |path| r
 require 'lark/api'
 
 module Lark
-  API_BASE_URL = 'https://open.feishu.cn/open-apis/'.freeze
-
   # Exceptions
   class RedisNotConfigException < RuntimeError; end
   class AppNotConfigException < RuntimeError; end

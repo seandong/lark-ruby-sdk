@@ -45,7 +45,7 @@ module Lark
     private
 
     def request(path, header = {}, &_block)
-      url = URI.join(API_BASE_URL, path)
+      url = URI.join(Lark.api_base_url, path)
       Lark.logger.info "request url(#{url}) with headers: #{header}"
       as = header.delete(:as)
       header['Accept'] = 'application/json'
@@ -79,7 +79,7 @@ module Lark
       Lark.logger.info "response body: #{body}"
       data = JSON.parse body.to_s
       result = Result.new(data)
-      raise ::Lark::AccessTokenExpiredError if [99991663, 99991664].include?(result.code)
+      raise ::Lark::AccessTokenExpiredError if [99_991_663, 99_991_664].include?(result.code)
 
       result
     end

@@ -5,7 +5,7 @@ module Lark
     module Authen
       def index(redirect_uri, state)
         uri = ERB::Util.url_encode(redirect_uri)
-        "#{URI::join(API_BASE_URL, 'authen/v1/index')}?redirect_uri=#{uri}&app_id=#{app_id}&state=#{state}"
+        "#{URI.join(Lark.api_base_url, 'authen/v1/index')}?redirect_uri=#{uri}&app_id=#{app_id}&state=#{state}"
       end
 
       def access_token(code)
@@ -25,7 +25,7 @@ module Lark
       end
 
       def user_info(user_access_token)
-        request.get 'authen/v1/user_info', {access_token: user_access_token}
+        request.get 'authen/v1/user_info', { access_token: user_access_token }
       end
     end
   end

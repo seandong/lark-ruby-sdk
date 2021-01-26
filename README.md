@@ -12,13 +12,13 @@ gem 'lark-sdk'
 
 And then execute:
 
-	$ bundle install
+  $ bundle install
 
 Or install it yourself as:
 
-	$ gem install lark-sdk
+  $ gem install lark-sdk
 
-	require 'lark/sdk'
+  require 'lark/sdk'
 
 ## 使用
 
@@ -32,6 +32,7 @@ Lark.configure do |config|
   config.default_app_id = 'xxx'       # 应用 app ID
   config.default_app_secret = 'xxx'   # 应用 app secret
   config.default_isv = true           # 自建应用: false, 应用商店应用: true
+  config.api_base_url = 'https://open.feishu.cn/open-apis/' # API 地址，默认：https://open.feishu.cn/open-apis/
   # ...
 end
 ```
@@ -40,10 +41,10 @@ end
 
 ```ruby
 api = Lark::Api.new(
-	app_id: 'xxx',        # default: Lark.config.default_app_id
-	app_secret: 'xxx',    # default: Lark.config.default_app_secret
-	isv: false/true,      # default: Lark.config.default_app_secret
-	tenant_key: 'xxx'     # required while internal app
+  app_id: 'xxx',        # default: Lark.config.default_app_id
+  app_secret: 'xxx',    # default: Lark.config.default_app_secret
+  isv: false/true,      # default: Lark.config.default_app_secret
+  tenant_key: 'xxx'     # required while internal app
 )
 ```
 
