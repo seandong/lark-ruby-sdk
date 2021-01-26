@@ -28,9 +28,9 @@ Or install it yourself as:
 # config/initializers/lark.rb
 
 Lark.configure do |config|
-  config.redis = Redis.new(url: 'redis://127.0.0.1:6379/1')
-  config.default_app_id = 'xxx'       # 应用 app ID
-  config.default_app_secret = 'xxx'   # 应用 app secret
+	config.redis = Redis.new(url: 'redis://127.0.0.1:6379/1')
+	config.default_app_id = 'xxx'       # 应用 app ID
+	config.default_app_secret = 'xxx'   # 应用 app secret
 	config.default_isv = true           # 自建应用: false, 应用商店应用: true
 	config.api_base_url = 'https://open.feishu.cn/open-apis/' # API 地址，默认：https://open.feishu.cn/open-apis/
   # ...
