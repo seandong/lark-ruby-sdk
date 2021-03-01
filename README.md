@@ -6,19 +6,23 @@
 
 Add this line to your application's Gemfile:
 
-```ruby
+```bash
 gem 'lark-sdk'
 ```
 
 And then execute:
 
-  $ bundle install
+```bash
+$ bundle install
+```
 
 Or install it yourself as:
 
-  $ gem install lark-sdk
+```bash
+$ gem install lark-sdk
 
-  require 'lark/sdk'
+require 'lark/sdk'
+```
 
 ## 使用
 
