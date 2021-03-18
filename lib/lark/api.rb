@@ -39,7 +39,7 @@ module Lark
     end
 
     def request
-      @request ||= Lark::Request.new(false)
+      @request ||= Lark::Request.new
     end
 
     def get(path, headers = {})
