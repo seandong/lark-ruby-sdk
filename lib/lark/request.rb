@@ -46,9 +46,11 @@ module Lark
 
     def request(path, header = {}, &_block)
       url = URI.join(Lark.api_base_url, path)
-      Lark.logger.info "request url(#{url}) with headers: #{header}"
+      request_uuid = SecureRandom.uuid
+      Lark.logger.info "[#{request_uuid}] request url(#{url}) with headers: #{header}"
       as = header.delete(:as)
       header['Accept'] = 'application/json'
+      header['X-Request-ID'] = request_uuid
       response = yield(url, header)
       unless response.status.success?
         Lark.logger.error "request #{url} happen error: #{response.body}"
