@@ -3,7 +3,7 @@ require "erb"
 module Lark
   module Apis
     module Authen
-      def index(redirect_uri, state)
+      def index(redirect_uri, state = '')
         uri = ERB::Util.url_encode(redirect_uri)
         "#{URI.join(Lark.api_base_url, 'authen/v1/index')}?redirect_uri=#{uri}&app_id=#{app_id}&state=#{state}"
       end
