@@ -82,6 +82,10 @@ module Lark
         get 'contact/v1/user/batch_get', params: params
       end
 
+      def get_user_info(user_id, params={})
+        get "contact/v3/users/#{user_id}", params: params
+      end
+
       def tenant_custom_attr_get
         get 'contact/v1/tenant/custom_attr/get'
       end
