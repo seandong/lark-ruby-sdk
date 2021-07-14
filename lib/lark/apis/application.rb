@@ -33,8 +33,8 @@ module Lark
         get 'application/v6/scopes'
       end
 
-      def scopes_apply
-        post 'application/v6/scopes/apply'
+      def scopes_apply(payload = {})
+        post 'application/v6/scopes/apply', payload
       end
     end
   end
