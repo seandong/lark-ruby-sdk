@@ -19,6 +19,7 @@ module Lark
     api_mount :notify
     api_mount :interactive
     api_mount :block
+    api_mount :approval
     api_mount :'drive/file'
     api_mount :'drive/folder'
     api_mount :'drive/platform'
