@@ -18,9 +18,11 @@ $ bundle install
 
 Or install it yourself as:
 
-```ruby
+```bash
 $ gem install lark-sdk
+```
 
+```ruby
 require 'lark/sdk'
 ```
 
