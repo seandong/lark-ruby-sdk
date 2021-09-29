@@ -12,13 +12,17 @@ gem 'lark-sdk'
 
 And then execute:
 
-  $ bundle install
+```ruby
+$ bundle install
+```
 
 Or install it yourself as:
 
-  $ gem install lark-sdk
+```ruby
+$ gem install lark-sdk
 
-  require 'lark/sdk'
+require 'lark/sdk'
+```
 
 ## 使用
 
