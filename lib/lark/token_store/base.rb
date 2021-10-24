@@ -23,7 +23,9 @@ module Lark
         if value.nil?
           Lark.logger.error "#{self.class.name} fetch token error: #{data.inspect}"
         else
-          expires_at = Time.now.to_i + data['expire'].to_i - 120
+          expire_in = data['expire'] || data['expire_in']
+          expire_in = 7200 if expire_in.nil?
+          expires_at = Time.now.to_i + expire_in.to_i - 120
           redis.hmset(
             redis_key,
             token_key, value,

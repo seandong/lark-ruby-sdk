@@ -21,6 +21,7 @@ module Lark
     api_mount :'drive/file'
     api_mount :'drive/folder'
     api_mount :'drive/platform'
+    api_mount :jssdk
 
     attr_reader :app_id, :app_secret, :tenant_key, :isv, :options
 
@@ -76,7 +77,17 @@ module Lark
       tenant_token_store.token
     end
 
+    def jsapi_ticket
+      jsapi_ticket_store.token
+    end
+
     private
+
+    def jsapi_ticket_store
+      return @jsapi_ticket_store if defined?(@jsapi_ticket_store)
+
+      @jsapi_ticket_store = TokenStore::JsapiTicket.new(self)
+    end
 
     def app_token_store
       return @app_token_store if defined?(@app_token_store)
