@@ -19,8 +19,7 @@ module Lark
 
       def update_token
         data = fetch_token.data
-        data = data['data'] if data.key?('data')
-        value = data[token_key]
+        value = data[token_key] || data.dig('data', token_key)
         if value.nil?
           Lark.logger.error "#{self.class.name} fetch token error: #{data.inspect}"
         else
