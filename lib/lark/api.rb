@@ -18,6 +18,8 @@ module Lark
     api_mount :mina
     api_mount :notify
     api_mount :interactive
+    api_mount :block
+    api_mount :approval
     api_mount :'drive/file'
     api_mount :'drive/folder'
     api_mount :'drive/platform'
@@ -31,7 +33,7 @@ module Lark
       raise AppNotConfigException if @app_id.nil? || @app_id.empty?
 
       @tenant_key = options.delete(:tenant_key)
-      @isv = options.delete(:isv) || Lark.config.default_isv
+      @isv = options.key?(:isv) ? options.delete(:isv) : Lark.config.default_isv
       @options = options
     end
 
