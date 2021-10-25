@@ -2,7 +2,7 @@ module Lark
   module Apis
     module Jssdk
       def ticket_get
-        post 'jssdk/ticket/get', {}
+        post 'jssdk/ticket/get'
       end
 
       def signature_params(url)
