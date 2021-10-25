@@ -51,7 +51,7 @@ module Lark
       end
     end
 
-    def post(path, payload, headers = {})
+    def post(path, payload = {}, headers = {})
       with_token(headers) do |headers_with_token|
         request.post path, payload, headers_with_token
       end
