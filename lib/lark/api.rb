@@ -15,6 +15,7 @@ module Lark
     api_mount :bot
     api_mount :message
     api_mount :image
+    api_mount :doc
     api_mount :mina
     api_mount :notify
     api_mount :interactive
