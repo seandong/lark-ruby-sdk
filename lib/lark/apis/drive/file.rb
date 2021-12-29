@@ -23,6 +23,30 @@ module Lark
           delete "drive/explorer/v2/file/spreadsheets/#{token}",
                  access_token: user_access_token
         end
+
+        def upload_all(user_access_token:, file_name:, parent_node:, size:, file:, parent_type: :explorer)
+          post "drive/v1/files/upload_all",
+               { file_name: file_name, parent_type: parent_type, parent_node: parent_node, size: size, file: file },
+               access_token: user_access_token
+        end
+
+        def upload_prepare(user_access_token:, file_name:, parent_node:, size:, parent_type: :explorer)
+          post "drive/v1/files/upload_prepare",
+               { file_name: file_name, parent_type: parent_type, parent_node: parent_node, size: size },
+               access_token: user_access_token
+        end
+
+        def upload_part(user_access_token:, upload_id:, seq:, size:, file:)
+          post "drive/v1/files/upload_part",
+               { upload_id: upload_id, seq: seq, size: size, file: file },
+               access_token: user_access_token
+        end
+
+        def upload_finish(user_access_token:, upload_id:, block_num:)
+          post "drive/v1/files/upload_finish",
+               { upload_id: upload_id, block_num: block_num },
+               access_token: user_access_token
+        end
       end
     end
   end
