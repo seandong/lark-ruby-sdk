@@ -25,9 +25,8 @@ module Lark
         end
 
         def upload_all(user_access_token:, file_name:, parent_node:, size:, file:, parent_type: :explorer)
-          form_data = HTTP::FormData::Multipart.new(file_name: file_name, parent_type: parent_type, parent_node: parent_node, size: size, file: file)
           post_form "drive/v1/files/upload_all",
-                    form_data,
+                    { file_name: file_name, parent_type: parent_type, parent_node: parent_node, size: size, file: file },
                     access_token: user_access_token
         end
 
@@ -38,10 +37,9 @@ module Lark
         end
 
         def upload_part(user_access_token:, upload_id:, seq:, size:, file:)
-          form_data = HTTP::FormData::Multipart.new(upload_id: upload_id, seq: seq, size: size, file: file)
           post_form "drive/v1/files/upload_part",
-                     form_data,
-                     access_token: user_access_token
+                    { upload_id: upload_id, seq: seq, size: size, file: file },
+                    access_token: user_access_token
         end
 
         def upload_finish(user_access_token:, upload_id:, block_num:)

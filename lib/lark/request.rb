@@ -47,7 +47,7 @@ module Lark
         header.delete(:params)
         http.headers(header).post(
           url,
-          form: form_data,
+          form: HTTP::FormData::Multipart.new(form_data),
           ssl_context: ssl_context
         )
       end
