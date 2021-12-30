@@ -42,6 +42,17 @@ module Lark
       end
     end
 
+    def post_form(path, form_data, post_header = {})
+      request(path, post_header) do |url, header|
+        header.delete(:params)
+        http.headers(header).post(
+          url,
+          form: form_data,
+          ssl_context: ssl_context
+        )
+      end
+    end
+
     private
 
     def request(path, header = {}, &_block)

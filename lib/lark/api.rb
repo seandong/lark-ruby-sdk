@@ -64,6 +64,12 @@ module Lark
       end
     end
 
+    def post_form(path, form_data, headers = {})
+      with_token(headers) do |headers_with_token|
+        request.post_form path, form_data, headers_with_token
+      end
+    end
+
     def app_ticket=(new_ticket)
       Lark.redis.set "APP_TICKET_#{app_id}", new_ticket
     end
