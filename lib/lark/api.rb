@@ -58,9 +58,9 @@ module Lark
       end
     end
 
-    def post_file(path, file, headers = {})
+    def post_form(path, form_data, headers = {})
       with_token(headers) do |headers_with_token|
-        request.post_file path, file, headers_with_token
+        request.post_form path, form_data, headers_with_token
       end
     end
 
