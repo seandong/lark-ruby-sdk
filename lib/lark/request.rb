@@ -48,6 +48,7 @@ module Lark
       header['Accept'] = 'application/json'
       header['X-Request-ID'] = request_uuid
       response = yield(url, header)
+      Lark.logger.info "response headers: #{response.headers.inspect}"
       unless response.status.success?
         Lark.logger.error "request #{url} happen error: #{response.body}"
         raise ResponseError.new(response.status, response.body)
