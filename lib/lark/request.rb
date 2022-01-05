@@ -48,6 +48,7 @@ module Lark
       header['Accept'] = 'application/json'
       header['X-Request-ID'] = request_uuid
       response = yield(url, header)
+      Lark.logger.info "response headers: #{response.headers.inspect}"
       unless response.status.success?
         Lark.logger.error "request #{url} happen error: #{response.body}"
         raise ResponseError.new(response.status, response.body)
@@ -77,7 +78,8 @@ module Lark
       Lark.logger.info "response body: #{body}"
       data = JSON.parse body.to_s
       result = Result.new(data)
-      raise ::Lark::AccessTokenExpiredError if [99_991_663, 99_991_664].include?(result.code)
+      raise ::Lark::AccessTokenExpiredError if result.access_token_expired?
+      raise ::Lark::InternalErrorException if result.internal_error?
 
       result
     end
@@ -98,6 +100,14 @@ module Lark
     def initialize(data)
       @code = data['code'].to_i
       @data = data
+    end
+
+    def access_token_expired?
+      [99_991_663, 99_991_664].include?(code)
+    end
+
+    def internal_error?
+      [1_061_001, 1_061_006, 1_061_045].include?(code)
     end
 
     def success?
