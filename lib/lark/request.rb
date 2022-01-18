@@ -118,7 +118,7 @@ module Lark
     end
 
     def internal_error?
-      [1_061_001, 1_061_006, 1_061_045].include?(code)
+      [2_200, 1_061_001, 1_061_006, 1_061_045].include?(code)
     end
 
     def success?
