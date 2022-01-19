@@ -2,6 +2,13 @@ require 'http'
 
 module Lark
   class Request
+    RETRY_OPTIONS = {
+      max_tries: 3,
+      base_sleep_seconds: 0.5,
+      max_sleep_seconds: 1.0,
+      rescue: [Lark::InternalErrorException, HTTP::TimeoutError]
+    }.freeze
+
     attr_reader :ssl_context, :http
 
     def initialize(skip_verify_ssl = true)
@@ -42,18 +49,22 @@ module Lark
 
     def request(path, header = {}, &_block)
       url = URI.join(Lark.api_base_url, path)
-      request_uuid = SecureRandom.uuid
-      Lark.logger.info "[#{request_uuid}] request url(#{url}) with headers: #{header}"
       as = header.delete(:as)
       header['Accept'] = 'application/json'
-      header['X-Request-ID'] = request_uuid
-      response = yield(url, header)
-      Lark.logger.info "response headers: #{response.headers.inspect}"
-      unless response.status.success?
-        Lark.logger.error "request #{url} happen error: #{response.body}"
-        raise ResponseError.new(response.status, response.body)
+
+      with_retries RETRY_OPTIONS do |attempts|
+        request_uuid = SecureRandom.uuid
+        header['X-Request-ID'] = request_uuid
+
+        Lark.logger.info "[#{request_uuid}] request url(#{url}) with headers: #{header}, attempts: #{attempts}"
+        response = yield(url, header)
+        Lark.logger.info "[#{request_uuid}] response headers: #{response.headers.inspect}"
+        unless response.status.success?
+          Lark.logger.error "[#{request_uuid}] request #{url} happen error: #{response.body}"
+          raise ResponseError.new(response.status, response.body)
+        end
+        handle_response(response, as || :json)
       end
-      handle_response(response, as || :json)
     end
 
     def handle_response(response, as)
@@ -107,7 +118,7 @@ module Lark
     end
 
     def internal_error?
-      [1_061_001, 1_061_006, 1_061_045].include?(code)
+      [2_200, 1_061_001, 1_061_006, 1_061_045].include?(code)
     end
 
     def success?
