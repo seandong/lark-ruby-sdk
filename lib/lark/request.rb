@@ -3,9 +3,9 @@ require 'http'
 module Lark
   class Request
     RETRY_OPTIONS = {
-      max_tries: 3,
+      max_tries: 5,
       base_sleep_seconds: 0.5,
-      max_sleep_seconds: 1.0,
+      max_sleep_seconds: 3.0,
       rescue: [Lark::InternalErrorException, Lark::ServerErrorException, HTTP::TimeoutError]
     }.freeze
 
