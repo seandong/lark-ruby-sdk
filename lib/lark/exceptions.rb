@@ -5,6 +5,7 @@ module Lark
   class AccessTokenExpiredError < RuntimeError; end
   class ResultErrorException < RuntimeError; end
   class InternalErrorException < RuntimeError; end
+  class ServerErrorException < RuntimeError; end
   class ResponseError < StandardError
     attr_reader :error_code
     def initialize(errcode, errmsg='')
