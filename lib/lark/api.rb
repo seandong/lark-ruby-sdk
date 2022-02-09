@@ -25,6 +25,7 @@ module Lark
     api_mount :'drive/folder'
     api_mount :'drive/platform'
     api_mount :jssdk
+    api_mount :'v3/contact'
 
     attr_reader :app_id, :app_secret, :tenant_key, :isv, :options
 
