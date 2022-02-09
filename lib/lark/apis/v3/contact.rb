@@ -21,6 +21,21 @@ module Lark
           }.compact
         end
 
+        def all_scopes(user_id_type: nil, department_id_type: nil)
+          page_token = nil
+          has_more = true
+          all_data = { 'department_ids' => [], 'user_ids' => [] }.tap do |data|
+            while has_more
+              scope_data = scopes(user_id_type: user_id_type, department_id_type: department_id_type, page_token: page_token).data
+              data['department_ids'] += scope_data.dig('data', 'department_ids') || []
+              data['user_ids'] += scope_data.dig('data', 'user_ids') || []
+              has_more = scope_data.dig('data', 'has_more')
+              page_token = scope_data.dig('data', 'page_token')
+            end
+          end
+          all_data
+        end
+
         # User
         def user(user_id, user_id_type: nil, department_id_type: nil)
           get "contact/v3/users/#{user_id}", params: {
