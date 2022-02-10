@@ -53,6 +53,12 @@ module Lark
       end
     end
 
+    def delete(path, payload = {}, headers = {})
+      with_token(headers) do |headers_with_token|
+        request.true_delete path, payload, headers_with_token
+      end
+    end
+
     def post(path, payload = {}, headers = {})
       with_token(headers) do |headers_with_token|
         request.post path, payload, headers_with_token
