@@ -26,7 +26,7 @@ module Lark
     api_mount :'drive/platform'
     api_mount :jssdk
     api_mount :'v3/contact'
-    api_mount :'v3/im'
+    api_mount :im
 
     attr_reader :app_id, :app_secret, :tenant_key, :isv, :options
 
@@ -56,7 +56,7 @@ module Lark
 
     def delete(path, payload = {}, headers = {})
       with_token(headers) do |headers_with_token|
-        request.true_delete path, payload, headers_with_token
+        request.delete path, payload, headers_with_token
       end
     end
 
