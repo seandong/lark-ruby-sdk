@@ -15,12 +15,12 @@ module Lark
         end
 
         def delete_doc(user_access_token:, token:)
-          delete "drive/explorer/v2/file/docs/#{token}",
+          delete "drive/explorer/v2/file/docs/#{token}", {},
                  access_token: user_access_token
         end
 
         def delete_sheet(user_access_token:, token:)
-          delete "drive/explorer/v2/file/spreadsheets/#{token}",
+          delete "drive/explorer/v2/file/spreadsheets/#{token}", {},
                  access_token: user_access_token
         end
 

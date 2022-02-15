@@ -24,7 +24,14 @@ module Lark
         http.headers(header).get(url, params: params, ssl_context: ssl_context)
       end
     end
-    alias delete get
+
+    def delete(path, delete_body, delete_header = {})
+      request(path, delete_header) do |url, header|
+        Lark.logger.info "payload: #{delete_body}"
+        params = header.delete(:params)
+        http.headers(header).delete(url, params: params, json: delete_body, ssl_context: ssl_context)
+      end
+    end
 
     def post(path, post_body, post_header = {})
       request(path, post_header) do |url, header|
