@@ -27,6 +27,7 @@ module Lark
     api_mount :jssdk
     api_mount :'v3/contact'
     api_mount :im
+    api_mount :'v4/calendar'
 
     attr_reader :app_id, :app_secret, :tenant_key, :isv, :options
 
