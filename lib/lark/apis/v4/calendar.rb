@@ -13,7 +13,7 @@ module Lark
           }
         end
 
-        def get(calendar_id, user_access_token: nil)
+        def info(calendar_id, user_access_token: nil)
           get "calendar/v4/calendars/#{calendar_id}", {
             access_token: user_access_token
           }
