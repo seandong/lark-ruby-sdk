@@ -52,6 +52,14 @@ module Lark
       end
     end
 
+    def put(path, put_body, put_header = {})
+      request(path, put_header) do |url, header|
+        Lark.logger.info "payload: #{put_body}"
+        params = header.delete(:params)
+        http.headers(header).put(url, params: params, json: put_body, ssl_context: ssl_context)
+      end
+    end
+
     private
 
     def request(path, header = {}, &_block)
