@@ -75,6 +75,12 @@ module Lark
       end
     end
 
+    def put(path, payload = {}, headers = {})
+      with_token(headers) do |headers_with_token|
+        request.put path, payload, headers_with_token
+      end
+    end
+
     def app_ticket=(new_ticket)
       Lark.redis.set "APP_TICKET_#{app_id}", new_ticket
     end
