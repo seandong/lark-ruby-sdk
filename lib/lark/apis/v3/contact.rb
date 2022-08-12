@@ -24,11 +24,12 @@ module Lark
         def all_scopes(user_id_type: nil, department_id_type: nil)
           page_token = nil
           has_more = true
-          all_data = { 'department_ids' => [], 'user_ids' => [] }.tap do |data|
+          all_data = { 'department_ids' => [], 'user_ids' => [], 'group_ids' => [] }.tap do |data|
             while has_more
               scope_data = scopes(user_id_type: user_id_type, department_id_type: department_id_type, page_token: page_token).data
               data['department_ids'] += scope_data.dig('data', 'department_ids') || []
               data['user_ids'] += scope_data.dig('data', 'user_ids') || []
+              data['group_ids'] += scope_data.dig('data', 'group_ids') || []
               has_more = scope_data.dig('data', 'has_more')
               page_token = scope_data.dig('data', 'page_token')
             end
@@ -72,6 +73,32 @@ module Lark
             page_size: page_size,
             page_token: page_token
           }.compact
+        end
+
+        # User Group
+        def group_members(group_id, member_id_type: nil, member_type: nil, page_token: nil, page_size: nil)
+          get "contact/v3/group/#{group_id}/member/simplelist", params: {
+            member_id_type: member_id_type,
+            member_type: member_type,
+            page_token: page_token,
+            page_size: page_size
+          }.compact
+        end
+
+        def all_group_members(group_id)
+          all_data = { 'department_ids' => [], 'user_ids' => [] }.tap do |data|
+            %w[user department].each do |member_type|
+              page_token = nil
+              has_more = true
+              while has_more
+                scope_data = group_members(group_id, member_type: member_type, page_token: page_token).data
+                data["#{member_type}_ids"] += (scope_data.dig('data', 'memberlist') || []).map { |m| m['member_id'] }
+                has_more = scope_data.dig('data', 'has_more')
+                page_token = scope_data.dig('data', 'page_token')
+              end
+            end
+          end
+          all_data
         end
       end
     end
