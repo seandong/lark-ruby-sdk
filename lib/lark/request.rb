@@ -1,4 +1,5 @@
 require 'http'
+require 'retries'
 
 module Lark
   class Request
