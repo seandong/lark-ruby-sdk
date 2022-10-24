@@ -59,6 +59,15 @@ module Lark
         }.compact, access_token: access_token
       end
 
+      # 获取文档纯文本内容
+      # @param [String] access_token
+      # @param [String] document_id
+      def get_raw_content(access_token:, document_id:)
+        response = get "docx/v1/documents/#{document_id}/raw_content",
+                       get_header: { access_token: access_token }
+        response.data['data']['content']
+      end
+
       private
 
       # @param [String] access_token
