@@ -66,10 +66,12 @@ module Lark
       url = URI.join(Lark.api_base_url, path)
       as = header.delete(:as)
       header['Accept'] = 'application/json'
+      header_params = header.fetch(:params, {})
 
       with_retries RETRY_OPTIONS do |attempts|
         request_uuid = SecureRandom.uuid
         header['X-Request-ID'] = request_uuid
+        header[:params] = header_params
 
         Lark.logger.info "[#{request_uuid}] request url(#{url}) with headers: #{header}, attempts: #{attempts}"
         response = yield(url, header)
@@ -77,6 +79,7 @@ module Lark
         if response.status.success?
           handle_response(response, as || :json)
         elsif response.status.server_error?
+          Lark.logger.error "[#{request_uuid}] request #{url} happen server error: #{response.status.code}"
           raise Lark::ServerErrorException
         else
           Lark.logger.error "[#{request_uuid}] request #{url} happen error: #{response.body}"
